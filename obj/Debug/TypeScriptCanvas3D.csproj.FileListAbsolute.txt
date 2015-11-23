@@ -4,3 +4,9 @@ C:\Users\ralsing\Documents\Visual Studio 2015\Projects\TypeScriptCanvas3D\TypeSc
 C:\Users\ralsing\Documents\Visual Studio 2015\Projects\TypeScriptCanvas3D\TypeScriptCanvas3D\obj\Debug\TypeScriptCanvas3D.csprojResolveAssemblyReference.cache
 C:\Users\ralsing\Documents\Visual Studio 2015\Projects\TypeScriptCanvas3D\TypeScriptCanvas3D\obj\Debug\TypeScriptCanvas3D.dll
 C:\Users\ralsing\Documents\Visual Studio 2015\Projects\TypeScriptCanvas3D\TypeScriptCanvas3D\obj\Debug\TypeScriptCanvas3D.pdb
+C:\Projects\Git\Typescript3dCanvas\bin\TypeScriptCanvas3D.dll.config
+C:\Projects\Git\Typescript3dCanvas\bin\TypeScriptCanvas3D.dll
+C:\Projects\Git\Typescript3dCanvas\bin\TypeScriptCanvas3D.pdb
+C:\Projects\Git\Typescript3dCanvas\obj\Debug\TypeScriptCanvas3D.csprojResolveAssemblyReference.cache
+C:\Projects\Git\Typescript3dCanvas\obj\Debug\TypeScriptCanvas3D.dll
+C:\Projects\Git\Typescript3dCanvas\obj\Debug\TypeScriptCanvas3D.pdb

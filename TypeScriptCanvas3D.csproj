@@ -28,8 +28,10 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="data.ts" />
-    <TypeScriptCompile Include="vector.ts" />
+    <TypeScriptCompile Include="script\data.ts" />
+    <TypeScriptCompile Include="script\FileLoader.ts" />
+    <TypeScriptCompile Include="script\RenderEngine.ts" />
+    <TypeScriptCompile Include="script\Structures.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
