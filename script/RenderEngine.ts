@@ -31,6 +31,7 @@ module Canvas3D {
                     var b = mesh.calcVertices[polygon.b];
                     var c = mesh.calcVertices[polygon.c];
                     var norm = this.dot(a, b, c);
+                    //remove polygons based on culling
                     if (norm.z < 0) {
                         var xs = [Math.floor(a.x + cx), Math.floor(b.x + cx), Math.floor(c.x + cx)];
                         var ys = [Math.floor(a.y + cy), Math.floor(b.y + cy), Math.floor(c.y + cy)];
@@ -73,14 +74,15 @@ module Canvas3D {
             //'draw upper-------------------------------------------------------------------------
             var x1 = f.x[top];
             var x2 = f.x[top];
-            var xd1 = (f.x[middle] - f.x[top]) / (f.y[middle] + 1 - f.y[top]);
-            var xd2 = (f.x[bottom] - f.x[top]) / (f.y[bottom] + 1 - f.y[top]);
             var u1 = f.u[top];
             var u2 = f.u[top];
-            var ud1 = (f.u[middle] - f.u[top]) / (f.y[middle] + 1 - f.y[top]);
-            var ud2 = (f.u[bottom] - f.u[top]) / (f.y[bottom] + 1 - f.y[top]);
             var v1 = f.v[top];
             var v2 = f.v[top];
+
+            var xd1 = (f.x[middle] - f.x[top]) / (f.y[middle] + 1 - f.y[top]);
+            var xd2 = (f.x[bottom] - f.x[top]) / (f.y[bottom] + 1 - f.y[top]);
+            var ud1 = (f.u[middle] - f.u[top]) / (f.y[middle] + 1 - f.y[top]);
+            var ud2 = (f.u[bottom] - f.u[top]) / (f.y[bottom] + 1 - f.y[top]);
             var vd1 = (f.v[middle] - f.v[top]) / (f.y[middle] + 1 - f.y[top]);
             var vd2 = (f.v[bottom] - f.v[top]) / (f.y[bottom] + 1 - f.y[top]);
             var i: number;
@@ -98,6 +100,7 @@ module Canvas3D {
             x1 = f.x[middle];
             u1 = f.u[middle];
             v1 = f.v[middle];
+
             xd1 = (f.x[bottom] - x1) / (f.y[bottom] + 1 - f.y[middle]);
             xd2 = (f.x[bottom] - x2) / (f.y[bottom] + 1 - f.y[middle]);
             ud1 = (f.u[bottom] - u1) / (f.y[bottom] + 1 - f.y[middle]);
