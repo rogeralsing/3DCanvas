@@ -28,7 +28,8 @@
         var zr = 0;
         var g = new Canvas3D.RenderEngine();
         setInterval(() => {
-            c.clearRect(0, 0, canvas.width, canvas.height);
+            c.fillStyle = "#FF0000";
+            c.fillRect(0, 0, canvas.width, canvas.height);
             canvas = c.createImageData(width, height);
             g.rotate(xr, yr, zr, obj);
             xr += 0.01;

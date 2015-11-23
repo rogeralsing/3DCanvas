@@ -21,9 +21,13 @@
         var yr = 0;
         var zr = 0;
         var g = new Canvas3D.RenderEngine();
+        
         setInterval(function () {
-            c.clearRect(0, 0, canvas.width, canvas.height);
+
+            //c.fillStyle = "#600030";
+            //c.fillRect(0, 0, canvas.width, canvas.height);
             canvas = c.createImageData(width, height);
+            
             g.rotate(xr, yr, zr, obj);
             xr += 0.01;
             yr += 0.013;
