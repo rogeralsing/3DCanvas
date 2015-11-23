@@ -1,7 +1,7 @@
 (function () {
     var img = new Image();
     img.onload = function () {
-        var loader = new FileLoader();
+        var loader = new Canvas3D.FileLoader();
         var obj = loader.loadFile(data, 11);
         var element = document.getElementById("canvas1");
         var c = element.getContext("2d");
@@ -20,7 +20,7 @@
         var xr = 0;
         var yr = 0;
         var zr = 0;
-        var g = new RenderEngine();
+        var g = new Canvas3D.RenderEngine();
         setInterval(function () {
             c.clearRect(0, 0, canvas.width, canvas.height);
             canvas = c.createImageData(width, height);
