@@ -37,8 +37,8 @@ module Canvas3D {
                         var na = mesh.calcVertexNormals[polygon.a];
                         var nb = mesh.calcVertexNormals[polygon.b];
                         var nc = mesh.calcVertexNormals[polygon.c];
-                        var us = [Math.floor(na.x * 100) + cu, Math.floor(nb.x * 100) + cu, Math.floor(nc.x * 100) + cu];
-                        var vs = [Math.floor(na.y * 100) + cv, Math.floor(nb.y * 100) + cv, Math.floor(nc.y * 100) + cv];
+                        var us = [Math.floor(na.x * cu) + cu, Math.floor(nb.x * cu) + cu, Math.floor(nc.x * cu) + cu];
+                        var vs = [Math.floor(na.y * cv) + cv, Math.floor(nb.y * cv) + cv, Math.floor(nc.y * cv) + cv];
                         var face = new TextureFace(xs, ys, us, vs);
                         this.drawFace(face, canvas, texture);
                     }
