@@ -21,20 +21,36 @@
         var yr = 0;
         var zr = 0;
         var g = new Canvas3D.RenderEngine();
-        
+        var frames = new Array(0);
+        var s2 = 0;
+        var frameCount = 8;
         setInterval(function () {
-
-            //c.fillStyle = "#600030";
-            //c.fillRect(0, 0, canvas.width, canvas.height);
             canvas = c.createImageData(width, height);
-            
             g.rotate(xr, yr, zr, obj);
             xr += 0.01;
             yr += 0.013;
             zr += 0.02;
             g.draw(obj, canvas, texture);
-            c.putImageData(canvas, 0, 0);
-        }, 10);
+            frames.push(canvas);
+            if (frames.length > frameCount + 1) {
+                frames.shift();
+                var s = s2;
+                s2 += 0.06;
+                for (var i = 0; i < height; i++) {
+                    var index = Math.ceil((Math.sin(s) * frameCount + frameCount) / 2);
+                    if (index > frameCount)
+                        index = frameCount;
+                    if (index < 0)
+                        index = 0;
+                    s += 0.05;
+                    var frame = frames[index];
+                    c.putImageData(frame, 0, 0, 0, i, width, 1);
+                }
+            }
+            else {
+                c.putImageData(canvas, 0, 0);
+            }
+        }, 1);
     };
     img.src = "/images/phong4.png";
 })();
