@@ -77,7 +77,7 @@
         }
     }
 
-    export class Object2D {
+    export class Object3D {
         constructor(public meshes: Mesh[]) {
         }
     }

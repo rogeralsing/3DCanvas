@@ -35,14 +35,14 @@
             if (frames.length > frameCount + 1) {
                 frames.shift();
                 var s = s2;
-                s2 += 0.06;
+                s2 += 0.03;
                 for (var i = 0; i < height; i++) {
                     var index = Math.ceil((Math.sin(s) * frameCount + frameCount) / 2);
                     if (index > frameCount)
                         index = frameCount;
                     if (index < 0)
                         index = 0;
-                    s += 0.02;
+                    s += 0.01;
                     var frame = frames[index];
                     c.putImageData(frame, 0, 0, 0, i, width, 1);
                 }

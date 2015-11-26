@@ -97,12 +97,12 @@ var Canvas3D;
         return Mesh;
     })();
     Canvas3D.Mesh = Mesh;
-    var Object2D = (function () {
-        function Object2D(meshes) {
+    var Object3D = (function () {
+        function Object3D(meshes) {
             this.meshes = meshes;
         }
-        return Object2D;
+        return Object3D;
     })();
-    Canvas3D.Object2D = Object2D;
+    Canvas3D.Object3D = Object3D;
 })(Canvas3D || (Canvas3D = {}));
 //# sourceMappingURL=Structures.js.map

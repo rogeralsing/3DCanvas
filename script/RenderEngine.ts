@@ -9,7 +9,7 @@ module Canvas3D {
             return cross.normalize();
         }
 
-        draw(obj: Object2D, canvas: ImageData, texture: ImageData) {
+        draw(obj: Object3D, canvas: ImageData, texture: ImageData) {
             var cx = canvas.width / 2;
             var cy = canvas.height / 2;
             var cu = texture.width / 2;
@@ -156,7 +156,7 @@ module Canvas3D {
             }
         }
 
-        rotate(xRot: number, yRot: number, zRot: number, obj: Object2D) {
+        rotate(xRot: number, yRot: number, zRot: number, obj: Object3D) {
 
             var cXa = Math.cos(xRot);
             var cYa = Math.cos(yRot);

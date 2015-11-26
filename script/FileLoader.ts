@@ -5,7 +5,7 @@ module Canvas3D {
         private charIndex = 0;
         private lines: string[];
 
-        loadFile(content: string, zoom: number): Object2D {
+        loadFile(content: string, zoom: number): Object3D {
             var find = "\t";
             var re = new RegExp(find, "g");
             content = content.replace(re, " ");
@@ -110,7 +110,7 @@ module Canvas3D {
                 meshes.push(mesh);
             }
 
-            var res = new Object2D(meshes);
+            var res = new Object3D(meshes);
             return res;
         }
 

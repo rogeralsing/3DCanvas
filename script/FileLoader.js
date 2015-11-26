@@ -102,7 +102,7 @@ var Canvas3D;
                 var mesh = new Canvas3D.Mesh(meshID, r, g, b, polygons, vertices, vertexNormals, outlines);
                 meshes.push(mesh);
             }
-            var res = new Canvas3D.Object2D(meshes);
+            var res = new Canvas3D.Object3D(meshes);
             return res;
         };
         FileLoader.prototype.nextLine = function () {
