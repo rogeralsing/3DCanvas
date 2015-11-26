@@ -29,7 +29,7 @@
         var g = new Canvas3D.RenderEngine();
         var frames = new Array<ImageData>(0);
         var s2 = 0;
-        var frameCount = 8;
+        var frameCount = 100;
         setInterval(() => {
             canvas = c.createImageData(width, height);
             g.rotate(xr, yr, zr, obj);
@@ -41,7 +41,7 @@
             if (frames.length > frameCount+1) {
                 frames.shift();
                 var s = s2;
-                s2 += 0.06;
+                s2 += 0.06 ;
                 for (var i = 0; i < height; i++) {
 
                     var index = Math.ceil((Math.sin(s) * frameCount + frameCount)/2);
@@ -51,7 +51,7 @@
                     if (index < 0)
                         index = 0;
 
-                    s += 0.05;
+                    s += 0.02;
                     var frame = frames[index];
                     c.putImageData(frame, 0, 0,0,i,width,1);
                 }

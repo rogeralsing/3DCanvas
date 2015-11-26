@@ -23,7 +23,7 @@
         var g = new Canvas3D.RenderEngine();
         var frames = new Array(0);
         var s2 = 0;
-        var frameCount = 8;
+        var frameCount = 100;
         setInterval(function () {
             canvas = c.createImageData(width, height);
             g.rotate(xr, yr, zr, obj);
@@ -42,7 +42,7 @@
                         index = frameCount;
                     if (index < 0)
                         index = 0;
-                    s += 0.05;
+                    s += 0.02;
                     var frame = frames[index];
                     c.putImageData(frame, 0, 0, 0, i, width, 1);
                 }
