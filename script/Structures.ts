@@ -35,11 +35,11 @@
         }
 
         normalize(): Vertex {
-            var h = Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
-            if (h === 0) {
-                return new Vertex(0, 0, 0.01); //hack
+            const length = Math.hypot(this.x, this.y, this.z);
+            if (length === 0) {
+                return new Vertex(0, 0, 0.01); // Avoid zero-length normals
             }
-            return new Vertex(this.x / h, this.y / h, this.z / h);
+            return new Vertex(this.x / length, this.y / length, this.z / length);
         }
     }
 

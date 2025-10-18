@@ -1,65 +1,75 @@
 ﻿(() => {
-    var img = new Image();
-    img.onload = () => {
-        var loader = new Canvas3D.FileLoader();
-        var obj = loader.loadFile(data, 11);
+    const img = new Image();
+    img.addEventListener("load", () => {
+        const loader = new Canvas3D.FileLoader();
+        const obj = loader.loadFile(data, 11);
 
-        var element = <HTMLCanvasElement>document.getElementById("canvas1");
-        var c = element.getContext("2d");
+        const element = document.getElementById("canvas1") as HTMLCanvasElement | null;
+        if (!element) {
+            console.error("Canvas element with id 'canvas1' is missing.");
+            return;
+        }
 
-        // read the width and height of the canvas
-        var width = element.width;
-        var height = element.height;
+        const context = element.getContext("2d");
+        if (!context) {
+            console.error("Unable to acquire 2D rendering context.");
+            return;
+        }
 
-        // create a new batch of pixels with the same
-        // dimensions as the image:
-        var canvas = c.createImageData(width, height);
+        const { width, height } = element;
+        let frameBuffer = context.createImageData(width, height);
 
-        var textureCanvas = document.createElement("canvas");
+        const textureCanvas = document.createElement("canvas");
         textureCanvas.width = img.width;
         textureCanvas.height = img.height;
-        var textureContext = textureCanvas.getContext("2d");
+        const textureContext = textureCanvas.getContext("2d");
+        if (!textureContext) {
+            console.error("Unable to acquire 2D context for the texture.");
+            return;
+        }
 
         textureContext.drawImage(img, 0, 0, img.width, img.height);
-        var texture = textureContext.getImageData(0, 0, img.width, img.height);
+        const texture = textureContext.getImageData(0, 0, img.width, img.height);
 
-        var xr = 0;
-        var yr = 0;
-        var zr = 0;
-        var g = new Canvas3D.RenderEngine();
-        var frames = new Array<ImageData>(0);
-        var s2 = 0;
-        var frameCount = 100;
-        setInterval(() => {
-            canvas = c.createImageData(width, height);
-            g.rotate(xr, yr, zr, obj);
-            xr += 0.01;
-            yr += 0.013;
-            zr += 0.02;
-            g.draw(obj, canvas, texture);
-            frames.push(canvas);
-            if (frames.length > frameCount+1) {
+        let xRotation = 0;
+        let yRotation = 0;
+        let zRotation = 0;
+        const engine = new Canvas3D.RenderEngine();
+        const frames: ImageData[] = [];
+        let ripplePhase = 0;
+        const frameCount = 100;
+
+        const render = () => {
+            frameBuffer = context.createImageData(width, height);
+            engine.rotate(xRotation, yRotation, zRotation, obj);
+            xRotation += 0.01;
+            yRotation += 0.013;
+            zRotation += 0.02;
+            engine.draw(obj, frameBuffer, texture);
+
+            frames.push(frameBuffer);
+            if (frames.length > frameCount + 1) {
                 frames.shift();
-                var s = s2;
-                s2 += 0.03 ;
-                for (var i = 0; i < height; i++) {
+            }
 
-                    var index = Math.ceil((Math.sin(s) * frameCount + frameCount)/2);
-
-                    if (index > frameCount)
-                        index = frameCount;
-                    if (index < 0)
-                        index = 0;
-
-                    s += 0.01;
-                    var frame = frames[index];
-                    c.putImageData(frame, 0, 0,0,i,width,1);
+            if (frames.length > frameCount) {
+                let phase = ripplePhase;
+                ripplePhase += 0.03;
+                for (let y = 0; y < height; y++) {
+                    const wave = Math.sin(phase) * frameCount;
+                    const index = Math.max(0, Math.min(frameCount, Math.ceil((wave + frameCount) / 2)));
+                    phase += 0.01;
+                    const frame = frames[index] ?? frameBuffer;
+                    context.putImageData(frame, 0, 0, 0, y, width, 1);
                 }
             } else {
-                c.putImageData(canvas, 0, 0);
+                context.putImageData(frameBuffer, 0, 0);
             }
-        
-        }, 1);
-    };
+
+            requestAnimationFrame(render);
+        };
+
+        requestAnimationFrame(render);
+    });
     img.src = "./images/phong4.png";
 })();

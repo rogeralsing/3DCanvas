@@ -1,5 +1,5 @@
 ﻿
-var data = `
+const data = `
 *3DSMAX_ASCIIEXPORT	200
 *COMMENT "AsciiExport Version  2,00 - Fri Mar 10 13:54:01 2000"
 *SCENE {
