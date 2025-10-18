@@ -1,0 +1,26 @@
+{
+  "name": "3dcanvas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "serve": "http-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogeralsing/3DCanvas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rogeralsing/3DCanvas/issues"
+  },
+  "homepage": "https://github.com/rogeralsing/3DCanvas#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "es2015",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false
+  },
+  "include": [
+    "app.ts",
+    "script/**/*.ts"
+  ]
+}
