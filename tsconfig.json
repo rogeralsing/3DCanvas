@@ -12,6 +12,7 @@
   "include": [
     "app.ts",
     "app-webgl.ts",
+    "app-circle-demo.ts",
     "script/**/*.ts"
   ]
 }
