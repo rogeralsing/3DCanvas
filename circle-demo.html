@@ -2,14 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Circle &amp; A — WebGL Demo</title>
+    <title>Metaball Demo — WebGL</title>
     <style>
-        html, body { margin: 0; height: 100%; background: #111; display: flex; align-items: center; justify-content: center; }
+        html, body { margin: 0; height: 100%; background: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         canvas { display: block; }
+        .controls { margin-top: 12px; display: flex; align-items: center; gap: 10px; color: #aaa; font-family: sans-serif; font-size: 14px; }
+        input[type="range"] { width: 200px; }
     </style>
 </head>
 <body>
     <canvas id="canvas1" width="800" height="600"></canvas>
+    <div class="controls">
+        <label for="cutoff">Cutoff:</label>
+        <input type="range" id="cutoff" min="0" max="255" value="200">
+        <span id="cutoffValue">200</span>
+        <label for="decay" style="margin-left: 20px;">Decay:</label>
+        <input type="range" id="decay" min="0.1" max="5.0" step="0.1" value="1.0">
+        <span id="decayValue">1.0</span>
+        <label style="margin-left: 20px;"><input type="checkbox" id="showBlur"> Show blur areas</label>
+    </div>
     <script src="dist/app-circle-demo.js"></script>
 </body>
 </html>
