@@ -11,6 +11,7 @@
   },
   "include": [
     "app.ts",
+    "app-webgl.ts",
     "script/**/*.ts"
   ]
 }
