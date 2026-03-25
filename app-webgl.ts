@@ -146,6 +146,7 @@
             uniform int uWrite;
             uniform int uReady;
             uniform float uHeight;
+            uniform float uWidth;
             in vec2 vUV;
             out vec4 outColor;
             void main() {
@@ -154,10 +155,13 @@
                     outColor = texture(uFrames, vec3(vUV, float(uWrite)));
                     return;
                 }
-                // Ripple: each scanline samples from a different frame in history
+                // Ripple: each pixel samples from a different frame in history
+                // based on both its X and Y position
                 float y = uHeight - gl_FragCoord.y; // top-to-bottom like original
-                float phase = uPhase + y * 0.01;
-                float wave = sin(phase) * float(uCount);
+                float x = gl_FragCoord.x;
+                float waveY = sin(uPhase + y * 0.01);
+                float waveX = sin(uPhase * 0.7 + x * 0.01);
+                float wave = (waveY + waveX) * 0.5 * float(uCount);
                 int idx = clamp(int(ceil((wave + float(uCount)) / 2.0)), 0, uCount);
                 // Map ring buffer index to texture array layer
                 int layer = (uWrite + 1 + idx) % (uCount + 1);
@@ -172,6 +176,7 @@
         const uWrite = gl.getUniformLocation(postProg, "uWrite");
         const uReady = gl.getUniformLocation(postProg, "uReady");
         const uHeight = gl.getUniformLocation(postProg, "uHeight");
+        const uWidth = gl.getUniformLocation(postProg, "uWidth");
 
         // ─── Geometry VAO ────────────────────────────────────────────────
         const sceneVAO = gl.createVertexArray()!;
@@ -256,7 +261,7 @@
             gl.enable(gl.DEPTH_TEST);
             gl.enable(gl.CULL_FACE);
             gl.cullFace(gl.BACK);
-            gl.frontFace(gl.CCW);
+            gl.frontFace(gl.CW);
 
             gl.useProgram(sceneProg);
             gl.uniformMatrix4fv(uModel, false, buildModelMatrix(xRotation, yRotation, zRotation));
@@ -287,6 +292,7 @@
             gl.uniform1i(uWrite, writeSlot);
             gl.uniform1i(uReady, written > FRAME_COUNT ? 1 : 0);
             gl.uniform1f(uHeight, height);
+            gl.uniform1f(uWidth, width);
 
             gl.bindVertexArray(quadVAO);
             gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
